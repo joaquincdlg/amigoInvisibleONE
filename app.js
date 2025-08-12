@@ -16,6 +16,7 @@ function agregarAmigo(){
     };
 };
 
+
 function agregarAmigosALaLista(){
     listaAmigos.innerHTML="";
     for (let i=0; i<amigos.length; i++){
