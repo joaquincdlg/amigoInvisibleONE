@@ -4,6 +4,13 @@
 let amigos=[];
 let listaAmigos = document.getElementById("listaAmigos");
 listaAmigos.innerHTML="";
+let resultadoAmigo = document.getElementById("resultado");
+let listaAmigosYaAsignados=[];
+let clicks= 0;
+let contadorDador=0;
+let receptorActual="";
+let dadorActual="";
+
 
 function agregarAmigo(){
     let amigoNuevo= document.getElementById('amigo').value;
@@ -13,17 +20,37 @@ function agregarAmigo(){
         amigos.push(amigoNuevo);
         limpiarCaja();
         agregarAmigosALaLista();
+        return amigos
     };
 };
-
 
 function agregarAmigosALaLista(){
     listaAmigos.innerHTML="";
     for (let i=0; i<amigos.length; i++){
         listaAmigos.innerHTML+=`<li> ${amigos[i]} </li>`;
+    };
+};
+
+function conteoClicks(){
+    clicks++;
+    if (clicks===1){
+        let dadorActual= amigos[contadorDador]
+        asignarTextoElemento("h2",`Es el turno de ${dadorActual} de conocer su amigo secreto!!!`)
+        contadorDador++
+    }else if(clicks===2){
+        sorteoAmigo(dadorActual)
     }
+        
+};
+
+function sorteoAmigo(dadorUniversal){
+    let posiblesReceptores=amigos.filter(amigo=>amigo!=dadorUniversal && !listaAmigosYaAsignados.includes(amigo));
+    let numeroAleatorio =  Math.floor(Math.random()*posiblesReceptores.length);
+    receptorActual=posiblesReceptores[numeroAleatorio];
+    listaAmigosYaAsignados.push(receptorActual)
+    asignarTextoElemento("h2",`${dadorActual} tu amigo secreto es ${receptorActual} (vuelve a presionar el botón y pasalo al siguiente)`)
+    clicks=0
 }
-//function sortearAmigo(){}
 
 
 function asignarTextoElemento(elemento, texto) {
