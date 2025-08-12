@@ -39,9 +39,7 @@ function conteoClicks(){
             asignarTextoElemento("h2",`Es el turno de ${dadorActual} de conocer su amigo secreto!!!`);
             contadorDador++;
         }else {
-            asignarTextoElemento("h2","Genial!!! ya pueden empezar a pensar que regalarle a sus AMIGOS SECRETOS ;)");
-            listaAmigos.innerHTML="Recarga la página para volver a jugar";
-            document.querySelector('.button-draw').setAttribute('disabled','true')            
+            reset()    
         }
     }else if(clicks===2){
         sorteoAmigo(dadorActual)
@@ -69,7 +67,8 @@ function limpiarCaja() {
     document.getElementById('amigo').value = '';
 };
 
-function reset{
+function reset(){
     asignarTextoElemento("h2","Genial!!! ya pueden empezar a pensar que regalarle a sus AMIGOS SECRETOS ;)");
-    
+    listaAmigos.innerHTML="Recarga la página para volver a jugar";
+    document.querySelector('.button-draw').setAttribute('disabled','true')    
 }
